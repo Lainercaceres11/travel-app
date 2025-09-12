@@ -20,20 +20,20 @@ export function Navbar({ session }: { session: Session | null }) {
           {session ? (
             <>
               <Link href="/trips" className="text-slate-900 hover:text-sky-500">
-                My trips
+                Mis viajes
               </Link>
               <Link
                 href="/globes"
                 className="text-slate-900 hover:text-sky-500"
               >
-                Globes
+                Mundo
               </Link>
 
               <button
                 onClick={logout}
                 className="flex items-center justify-center bg-gray-800 hover:bg-gray-900 text-white p-2 rounded-sm cursor-pointer"
               >
-                Sign out
+                Cerrar sesión
               </button>
             </>
           ) : (
@@ -41,7 +41,7 @@ export function Navbar({ session }: { session: Session | null }) {
               onClick={login}
               className="flex items-center justify-center bg-gray-800 hover:bg-gray-900 text-white p-2 rounded-sm cursor-pointer"
             >
-              Sign In
+              Iniciar sesión
               <svg
                 className="w-6 h-6 ml-2"
                 xmlns="http://www.w3.org/2000/svg"
