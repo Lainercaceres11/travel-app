@@ -21,6 +21,7 @@ export default async function TripDetail({ params }: TripDetailParams) {
       id: tripId,
       userId: session?.user?.id,
     },
+    include: { locations: true },
   });
 
   if (!trip) {
