@@ -120,8 +120,8 @@ export default async function LandingPage() {
               Listo para tu proxima aventura?
             </h2>
             <p className="text-xl text-blue-50 mb-8 max-w-2xl mx-auto">
-              Únase a miles de viajeros que planifican mejores viajes con Trip
-              Planner.
+              Únase a miles de viajeros que planifican sus mejores viajes con
+              Trip Planner.
             </p>
             <AuthButton
               isLoggedIn={isLoggedIn}
