@@ -154,7 +154,19 @@ export const TripDetailClient = ({ trip }: TripDetailProps) => {
               <SortableItinerary location={trip.locations} tripId={trip.id} />
             )}
           </TabsContent>
+
+          <TabsContent className="space-y-6" value="map">
+            <div className="h-72 rounded-lg overflow-hidden shadow">
+              <Map itineraries={trip.locations} />
+            </div>
+          </TabsContent>
         </Tabs>
+      </div>
+
+      <div className="u-text-center flex items-center justify-center">
+        <Link href={`/trips`}>
+          <Button>Volver a tus viajes</Button>
+        </Link>
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ export function Navbar({ session }: { session: Session | null }) {
                 Mis viajes
               </Link>
               <Link
-                href="/globes"
+                href="/globe"
                 className="text-slate-900 hover:text-sky-500"
               >
                 Mundo
