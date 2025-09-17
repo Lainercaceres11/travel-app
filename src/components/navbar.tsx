@@ -7,8 +7,8 @@ import Link from "next/link";
 
 export function Navbar({ session }: { session: Session | null }) {
   return (
-    <nav className="bg-white shadow-md p-4 border-b border-gray-200">
-      <div className="container mx-auto flex justify-between items-center px-6 lg:px-8">
+    <nav className="bg-white shadow-md border-b border-gray-200">
+      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between p-4">
         <Link href={"/"} className="flex items-center">
           <Image src="/logo.png" alt="Logo" width={50} height={50} />
           <span className="font-bold text-2xl text-gray-800">
@@ -22,10 +22,7 @@ export function Navbar({ session }: { session: Session | null }) {
               <Link href="/trips" className="text-slate-900 hover:text-sky-500">
                 Mis viajes
               </Link>
-              <Link
-                href="/globe"
-                className="text-slate-900 hover:text-sky-500"
-              >
+              <Link href="/globe" className="text-slate-900 hover:text-sky-500">
                 Mundo
               </Link>
 
