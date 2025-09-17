@@ -8,9 +8,11 @@ import {
   useSortable,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { useId, useState } from "react";
+import { useId, useState, useTransition } from "react";
 import { Location } from "../generated/prisma";
-import { reorderItinerary } from "@/lib/actions";
+import { deleteLocation, reorderItinerary } from "@/lib/actions";
+import { Button } from "./ui/button";
+import { Trash2 } from "lucide-react";
 
 type SortableItineraryProps = {
   location: Location[];
@@ -23,6 +25,8 @@ export const SortableItinerary = ({
 }: SortableItineraryProps) => {
   const [localLocation, setLocalLocations] = useState(location);
   const dndId = useId();
+
+  const [isPending, startTransition] = useTransition();
 
   const handleDragEnd = async (event: DragEndEvent) => {
     const { active, over } = event;
@@ -45,6 +49,17 @@ export const SortableItinerary = ({
       );
     }
   };
+
+  const handleDeleteLocation = async (locationId: string) => {
+    startTransition(async () => {
+      await deleteLocation(locationId);
+    });
+
+    setLocalLocations((prevState) =>
+      prevState.filter((loc) => loc.id !== locationId)
+    );
+  };
+
   return (
     <DndContext
       id={dndId}
@@ -56,33 +71,53 @@ export const SortableItinerary = ({
         strategy={verticalListSortingStrategy}
       >
         {localLocation.map((item, key) => (
-          <SortableItem key={key} item={item} />
+          <SortableItem
+            key={key}
+            item={item}
+            handleClick={() => handleDeleteLocation(item.id)}
+          />
         ))}
       </SortableContext>
     </DndContext>
   );
 };
 
-function SortableItem({ item }: { item: Location }) {
+function SortableItem({
+  item,
+  handleClick,
+}: {
+  item: Location;
+
+  handleClick: (id: string) => void;
+}) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: item.id });
 
   return (
-    <div
-      ref={setNodeRef}
-      {...attributes}
-      {...listeners}
-      style={{ transform: CSS.Transform.toString(transform), transition }}
-      className="p-4 border rounded-md flex justify-between items-center hover:shadow transition-shadow"
-    >
-      <div>
-        <h4 className="font-medium text-gray-800"> {item.locationTitle}</h4>
-        <p className="text-sm text-gray-500 truncate max-w-xs">
-          {" "}
-          {`Latitude: ${item.lat}, Longitude: ${item.lng}`}
-        </p>
+    <div className="space-y-2">
+      <div
+        ref={setNodeRef}
+        {...attributes}
+        {...listeners}
+        style={{ transform: CSS.Transform.toString(transform), transition }}
+        className="p-4 border rounded-md flex justify-between items-center hover:shadow transition-shadow"
+      >
+        <div>
+          <h4 className="font-medium text-gray-800"> {item.locationTitle}</h4>
+          <p className="text-sm text-gray-500 truncate max-w-xs">
+            {" "}
+            {`Latitude: ${item.lat}, Longitude: ${item.lng}`}
+          </p>
+        </div>
+        <div className="text-sm text-gray-600"> Día {item.order}</div>
       </div>
-      <div className="text-sm text-gray-600"> Día {item.order}</div>
+
+      <Button
+        aria-label="Eliminar itinerario"
+        onClick={() => handleClick(item.id)}
+      >
+        <Trash2 />
+      </Button>
     </div>
   );
 }

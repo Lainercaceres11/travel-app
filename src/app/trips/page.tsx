@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/src/components/ui/card";
 import { prisma } from "@/lib/prisma";
+import { RecentTrips } from "@/src/components";
 
 export default async function Trips() {
   const session = await auth();
@@ -83,29 +84,7 @@ export default async function Trips() {
             </CardContent>
           </Card>
         ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {sortedTrips.slice(0, 6).map((trip, key) => {
-              return (
-                <Link href={`/trips/${trip.id}`} key={key}>
-                  <Card className="h-full hover:shadow-md transition-shadow">
-                    <CardHeader>
-                      <CardTitle className="line-clamp-1">
-                        {trip.title}
-                      </CardTitle>
-                    </CardHeader>
-
-                    <CardContent>
-                      <p className="line-clamp-2 mb-2"> {trip.description}</p>
-                      <div className="text-sm">
-                        {new Date(trip.startDate).toLocaleDateString()} -
-                        {new Date(trip.endDate).toLocaleDateString()}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              );
-            })}
-          </div>
+          <RecentTrips sortedTrips={sortedTrips} />
         )}
       </div>
     </div>

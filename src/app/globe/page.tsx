@@ -1,5 +1,6 @@
 "use client";
 
+import { GlobeSkeleton } from "@/src/components";
 import {
   Card,
   CardContent,
@@ -93,36 +94,40 @@ export default function GlobePage() {
             </div>
 
             <div className="lg:col-span-1">
-              <Card className="sticky top-8">
-                <CardHeader>
-                  <CardTitle>Paises visitados</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="bg-blue-50 p-4 rounde-lg">
-                      <p className="text-sm text-blue-800">
-                        Has visitado {""}
-                        <span>{visitedCountries.size}</span> {""}
-                        {visitedCountries.size <= 1 ? "país" : "paises"}
-                      </p>
+              {isLoading ? (
+                <GlobeSkeleton />
+              ) : (
+                <Card className="sticky top-8">
+                  <CardHeader>
+                    <CardTitle>Paises visitados</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="bg-blue-50 p-4 rounde-lg">
+                        <p className="text-sm text-blue-800">
+                          Has visitado {""}
+                          <span>{visitedCountries.size}</span> {""}
+                          {visitedCountries.size <= 1 ? "país" : "paises"}
+                        </p>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="space-y-2 max-h-[500px] overflow-y-auto pr-2">
-                    {Array.from(visitedCountries)
-                      .sort()
-                      .map((item, key) => (
-                        <div
-                          key={key}
-                          className="flex items-center gap-2 p-3 rounde-lg hover: bg-gray-50 transition-colors border border-gray-100"
-                        >
-                          <MapPin className="h-4 w-4 text-red-500" />
-                          <span className="font-medium">{item}</span>
-                        </div>
-                      ))}
-                  </div>
-                </CardContent>
-              </Card>
+                    <div className="space-y-2 max-h-[500px] overflow-y-auto pr-2">
+                      {Array.from(visitedCountries)
+                        .sort()
+                        .map((item, key) => (
+                          <div
+                            key={key}
+                            className="flex items-center gap-2 p-3 rounde-lg hover: bg-gray-50 transition-colors border border-gray-100"
+                          >
+                            <MapPin className="h-4 w-4 text-red-500" />
+                            <span className="font-medium">{item}</span>
+                          </div>
+                        ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
             </div>
           </div>
         </div>
