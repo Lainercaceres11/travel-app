@@ -8,23 +8,22 @@ import {
   CardHeader,
   CardTitle,
 } from "@/src/components/ui/card";
-import { prisma } from "@/lib/prisma";
+
 import { RecentTrips } from "@/src/components";
+import { getTrips } from "@/lib/actions";
 
 export default async function Trips() {
   const session = await auth();
 
-  const trips = await prisma.trip.findMany({
-    where: { userId: session?.user?.id },
-  });
-
-  if (!session) {
+  if (!session || !session?.user?.id) {
     return (
       <div className="flex items-center justify-center h-screen text-gray-50 text-2xl">
         Por favor inicia sesión.
       </div>
     );
   }
+
+  const trips = await getTrips(session?.user?.id);
 
   const sortedTrips = [...trips].sort(
     (a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
