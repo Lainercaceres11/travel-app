@@ -2,11 +2,12 @@
 
 import { addLocation } from "@/lib/actions/add-location";
 
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 import { Button } from "./ui/button";
 
 export const NewLocation = ({ tripId }: { tripId: string }) => {
   const [isPending, starTransition] = useTransition();
+  const [message, setMessage] = useState("");
   return (
     <div className="min-h-[calc(100vh-8rem)] flex items-center justify-center bg-gray-50">
       <div className="w-full max-w-md mx-auto">
@@ -17,8 +18,12 @@ export const NewLocation = ({ tripId }: { tripId: string }) => {
 
           <form
             action={(formData) => {
-              starTransition(() => {
-                addLocation(formData, tripId);
+              starTransition(async () => {
+                const { lng, lat } = await addLocation(formData, tripId);
+
+                if (!lat || !lng) {
+                  setMessage("No se encontro esta ubicación");
+                }
               });
             }}
             className="space-y-6"
@@ -43,6 +48,10 @@ export const NewLocation = ({ tripId }: { tripId: string }) => {
               {isPending ? "Creando" : "Crear ubicación"}
             </Button>
           </form>
+
+          <p className="text-2xl text-center font-bold text-gray-700 mt-2">
+            {message}
+          </p>
         </div>
       </div>
     </div>

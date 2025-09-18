@@ -116,6 +116,7 @@ function SortableItem({
         aria-label="Eliminar itinerario"
         onClick={() => handleClick(item.id)}
       >
+        <span className="text-sm">Eliminar</span>
         <Trash2 />
       </Button>
     </div>

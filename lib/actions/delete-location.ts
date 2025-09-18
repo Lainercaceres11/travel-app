@@ -2,6 +2,7 @@
 
 import { auth } from "@/auth";
 import { prisma } from "../prisma";
+import { revalidatePath } from "next/cache";
 
 export const deleteLocation = async (locationId: string) => {
   const session = await auth();
@@ -13,5 +14,6 @@ export const deleteLocation = async (locationId: string) => {
     where: { id: locationId },
   });
 
+  revalidatePath(`/trips/${locationId}`);
   return locationId;
 };

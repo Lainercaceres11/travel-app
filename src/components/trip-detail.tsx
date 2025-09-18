@@ -38,7 +38,7 @@ export const TripDetailClient = ({ trip }: TripDetailProps) => {
         </>
       )}
 
-      <div className="bg-white p-6 shadow rounded-lg flex flex-col md:flex-row justify-between items-start md:items-center">
+      <div className="bg-white p-6 shadow rounded-lg flex md:flex-row justify-between items-start md:items-center">
         <div>
           <h1 className="text-4xl font-extrabold text-gray-900">
             {trip.title}
