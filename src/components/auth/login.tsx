@@ -24,7 +24,7 @@ export const LoginForm = () => {
     if (res?.error) {
       setError("Credenciales inválidas");
     } else {
-      router.push("/trips");
+      window.location.href = "/trips";
     }
   };
 
@@ -75,7 +75,7 @@ export const LoginForm = () => {
             {error && <p className="text-red-500 text-sm">{error}</p>}
 
             <Button type="submit" className="w-full">
-              Sign in
+              Iniciar
             </Button>
           </form>
         </CardContent>

@@ -65,7 +65,7 @@ export default function GlobePage() {
             <div className="lg:col-span-2 bg-white ronded-xl shadow-lg overflow-hidden">
               <div className="p-6">
                 <h2 className="text-2xl font-semibold mb-4">
-                  Mira donde has estado...
+                  Mira los paises que visitaras
                 </h2>
 
                 <div className="h-[600px] w-full relative">
@@ -99,13 +99,13 @@ export default function GlobePage() {
               ) : (
                 <Card className="sticky top-8">
                   <CardHeader>
-                    <CardTitle>Paises visitados</CardTitle>
+                    <CardTitle>Paises</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
                       <div className="bg-blue-50 p-4 rounde-lg">
                         <p className="text-sm text-blue-800">
-                          Has visitado {""}
+                          Escogistes  {""}
                           <span>{visitedCountries.size}</span> {""}
                           {visitedCountries.size <= 1 ? "país" : "paises"}
                         </p>
