@@ -14,13 +14,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
-  id            String          @id @default(cuid())
+  id            String    @id @default(cuid())
   name          String?
-  email         String          @unique
+  email         String    @unique
   emailVerified DateTime?
   image         String?
+  password      String?
   accounts      Account[]
   sessions      Session[]
   trips         Trip[]
@@ -30,7 +30,7 @@ model User {
 }
 
 model Account {
-  id                Int      @id @default(autoincrement())
+  id                Int     @id @default(autoincrement())
   userId            String
   type              String
   provider          String
@@ -70,14 +70,14 @@ model VerificationToken {
 }
 
 model Trip {
-  id String @id @default(cuid())
-  title String
+  id          String   @id @default(cuid())
+  title       String
   description String
-  imageUrl String?
-  startDate DateTime
-  endDate DateTime
-  user User @relation(fields: [userId], references: [id] )
-  userId String
+  imageUrl    String?
+  startDate   DateTime
+  endDate     DateTime
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
 
   locations Location[]
 
@@ -86,12 +86,12 @@ model Trip {
 }
 
 model Location {
-  id String @id @default(cuid())
+  id            String   @id @default(cuid())
   locationTitle String
-  lat Float
-  lng Float
-  trip Trip @relation(fields: [tripId], references: [id] )
-  tripId String
-  order Int @default(0)
-  createdAt DateTime @default(now())
+  lat           Float
+  lng           Float
+  trip          Trip     @relation(fields: [tripId], references: [id])
+  tripId        String
+  order         Int      @default(0)
+  createdAt     DateTime @default(now())
 }

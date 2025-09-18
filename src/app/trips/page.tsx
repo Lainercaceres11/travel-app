@@ -15,6 +15,8 @@ import { getTrips } from "@/lib/actions";
 export default async function Trips() {
   const session = await auth();
 
+  console.log({ session });
+
   if (!session || !session?.user?.id) {
     return (
       <div className="flex items-center justify-center h-screen text-gray-50 text-2xl">
@@ -65,11 +67,11 @@ export default async function Trips() {
         </CardContent>
       </Card>
 
-      <div className="">
+      <div>
         <h3 className="text-xl font-semibold mb-4">Tus viajes recientes</h3>
         {trips.length <= 0 ? (
           <Card>
-            <CardContent className="flex justify-center items-center py-8 ">
+            <CardContent className="flex flex-col justify-center items-center py-8 ">
               <h3 className="text-2xl font-medium mb-2">
                 No tienes viajes aun
               </h3>

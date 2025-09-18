@@ -20,7 +20,7 @@ export default function AuthButton({
     if (isLoggedIn) {
       router.push("/trips");
     } else {
-      await login();
+      router.push("/auth/login");
     }
   };
 

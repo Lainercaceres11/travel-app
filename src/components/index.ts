@@ -6,3 +6,4 @@ export * from "./sortable-itinerary";
 export * from "./aut-button";
 export * from "./trips/recent-trips";
 export * from "./globe-skeleton";
+export * from "./auth";

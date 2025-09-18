@@ -34,7 +34,7 @@ export default function Newtrip() {
                 htmlFor="title"
                 className="block mb-2 text-sm font-medium text-gray-700"
               >
-                Title
+                Titulo
               </label>
               <input
                 placeholder="Japan trip..."
@@ -53,7 +53,7 @@ export default function Newtrip() {
                 htmlFor="description"
                 className="block mb-2 text-sm font-medium text-gray-700"
               >
-                Description
+                Descripción
               </label>
               <textarea
                 placeholder="Description trip..."
@@ -72,7 +72,7 @@ export default function Newtrip() {
                   htmlFor="startDate"
                   className="block mb-2 text-sm font-medium text-gray-700"
                 >
-                  Start date
+                  Fecha inicio
                 </label>
                 <input
                   type="date"
@@ -90,7 +90,7 @@ export default function Newtrip() {
                   htmlFor="endDate"
                   className="block mb-2 text-sm font-medium text-gray-700"
                 >
-                  End date
+                  Fecha final
                 </label>
                 <input
                   type="date"
@@ -105,7 +105,7 @@ export default function Newtrip() {
             </div>
 
             <div>
-              <label>Trip Image</label>
+              <label>Imagen</label>
               {imgUrl && (
                 <Image
                   alt="Viaje vista"
@@ -116,11 +116,6 @@ export default function Newtrip() {
                 />
               )}
               <UploadButton
-                appearance={{
-                  button:
-                    "bg-black text-white px-4 py-2 rounded hover:bg-blue-700 mt-2",
-                  container: "flex flex-col items-center gap-2",
-                }}
                 endpoint="imageUploader"
                 onClientUploadComplete={(res) => {
                   if (res && res[0].ufsUrl) {
@@ -134,7 +129,7 @@ export default function Newtrip() {
             </div>
 
             <Button disabled={isPending} className="w-full" type="submit">
-              {isPending ? "Creating" : "Create trip"}
+              {isPending ? "Creando" : "Crear viaje"}
             </Button>
           </form>
         </CardContent>
