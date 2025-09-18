@@ -5,9 +5,11 @@ import { Button } from "@/src/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/src/components/ui/card";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export const LoginForm = () => {
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleSubmit = async (formData: FormData) => {
     const email = formData.get("email") as string;
@@ -22,7 +24,7 @@ export const LoginForm = () => {
     if (res?.error) {
       setError("Credenciales inválidas");
     } else {
-      window.location.href = "/trips";
+      router.push("/trips");
     }
   };
 
