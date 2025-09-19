@@ -1,11 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Travel Planner
+
+A platform for create, planification and organizate trips, using Next JS, Postgrest with Neon, uploading images and Next Auth for authenticated.
+
+## 📸 Preview
+
+![Travel Planner Screenshot](./public/screen-1.png)
+![Travel Planner Screenshot](./public/screen-2.png)
 
 ## Getting Started
 
-First, run the development server:
+First, clone this repository:
 
-```bash
-npm run dev
+```npm run dev
+git clone git@github.com:Lainercaceres11/travel-app.git
+```
+
+Second, navigate folder:
+
+```cd travel-planner
+cd travel-planner
+```
+
+Third, run the development server:
+
+```npm run dev
 # or
 yarn dev
 # or
@@ -14,23 +32,25 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+You can start editing the page by modifying app/page.js. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔑 Environment Variables
 
-## Learn More
+To run this project, you will need to add the following environment variables to your .env file
 
-To learn more about Next.js, take a look at the following resources:
+```env
+AUTH_GITHUB_ID=your_github_id
+AUTH_GITHUB_SECRET=your_github_secret
+AUTH_SECRET=yor_aut_secret
+UPLOADTHING_TOKEN=uploading_token
+GEO_API_KEY=your_api_key_geo
+DATABASE_URL=url_db
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 👨‍💻 Author
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+https://github.com/Lainercaceres11
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
